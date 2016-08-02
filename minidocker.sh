@@ -6,4 +6,4 @@ eval $(minikube docker-env)
 # Use docker version manager to set the right client
 dvm use 1.11.2
 
-exec docker $*
+docker $*
