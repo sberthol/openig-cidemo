@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: openig
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+         name: openig
+         site: site1
+    spec:
+      containers:
+      - name: openam
+        image: forgerock/openig-custom:template
+        imagePullPolicy: Always
+        ports:
+          - name: openig
+            containerPort: 8080

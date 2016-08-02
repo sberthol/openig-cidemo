@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: openam
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: openig
+      labels:
+         name: openig
+    spec:
+      containers:
+      - name: openig
+        image: forgerock/openig-custom:template
+        # Assume image is in our docker cache. Part of the CI build process
+        imagePullPolicy: Never
+        ports:
+          - name: openig
+            containerPort: 8080
