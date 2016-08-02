@@ -13,6 +13,7 @@ node {
 
   checkout scm
 
+  sh(" eval $(minikube docker-env)")
   stage 'Build image'
   sh("docker build -t ${imageTag} ${appName}")
 
