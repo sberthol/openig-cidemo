@@ -5,6 +5,8 @@ node {
   def feSvcName = "${appName}"
   // running on GKE?
   def isGKE = false
+  // using minikube for dev?
+  def isMinikube = true
   // Generated image tag - adjust for your environment
   //def imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   // for local minikube- we just use a branch name so we dont get image explosion
@@ -13,9 +15,14 @@ node {
 
   checkout scm
 
-  sh(" eval $(minikube docker-env)")
+
   stage 'Build image'
-  sh("docker build -t ${imageTag} ${appName}")
+
+  if( isMinikube ) {
+      sh("./minidocker.sh build -t ${imageTag} ${appName}"
+  }
+  else
+   sh("docker build -t ${imageTag} ${appName}")
 
 
    if( isGKE) {
