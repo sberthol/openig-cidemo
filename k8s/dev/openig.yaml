@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: openam
+  name: openig
 spec:
   replicas: 2
   template:
