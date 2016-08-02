@@ -19,7 +19,7 @@ node {
   stage 'Build image'
 
   if( isMinikube ) {
-      sh("./minidocker.sh build -t ${imageTag} ${appName}"
+      sh("./minidocker.sh build -t ${imageTag} ${appName}")
   }
   else
    sh("docker build -t ${imageTag} ${appName}")
