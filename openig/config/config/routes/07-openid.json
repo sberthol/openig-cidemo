@@ -17,7 +17,7 @@
         "clientSecret": "kgDsZr8ctb2RzP0P-SedCNHT",
         "issuer": "accounts.google.com",
         "redirect_uris": [
-          "https://openig.test.com/openid/callback"
+          "http://openig.test.com/openid/callback"
         ],
         "scopes": [
           "openid",
