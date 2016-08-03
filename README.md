@@ -25,8 +25,8 @@ You should have a good working knowledge of Docker and Kubernetes to get this wo
 * Fork and clone this repository 
 * Create a "multi stage pipeline" job in Jenkins that uses git or github as a source 
 * Start a kubernetes cluster  (minikube, gke, etc.)
-* The Jenkins job runner must have access to the kubectl and docker commands to control the cluster 
-
+* Edit the openig/config for your enviroment. To use Google social login, you 
+will need to enter your own client id and secret. 
 
 # How this works
 
@@ -81,7 +81,7 @@ There is a "canary" branch concept (currently not working) but the eventual inte
 replace one of N instances in production with a canary container.
 
 For example, try this:
-````
+```
 git branch foo
 git checkout foo 
 # Make changes....
@@ -90,7 +90,28 @@ git commit -a -m foo test
 ```
 
 
+# Useful tidbits
+
+If you are doing development on minikube, rather than push 
+to a registry, and then have k8s download the image again, it
+is easier to docker build directly to the docker instance
+used by k8s in minikube.  Set the imagePullPolicy appropriately in
+k8s/dev/. This is the way it is currently configured. 
+
+The k8s dashboard is helpful to view logs, etc. On minikube open 
+with:
+```
+minikube dashboard
+```
+
+
+
 # Fun things to try:
+
+### Change the number of replicas
+
+In the k8s dashboard, edit the openig deployment object, and
+change the number of replicas. You will see new pods created.
 
 
 ### Rollbacks 
@@ -119,14 +140,6 @@ Delete autoscaling:
 
 kubectl --namespace=master delete hpa openig
 
-
-# Useful tidbits
-
-If you are doing development on minikube, rather than push 
-to a registry, and then have k8s download the image again, it
-is easier to docker build directly to the docker instance
-used by k8s in minikube.  Set the imagePullPolicy appropriately in
-k8s/dev/. This is the way it is currently configured. 
 
 
 
