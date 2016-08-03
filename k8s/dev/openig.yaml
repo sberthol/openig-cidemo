@@ -25,5 +25,5 @@ spec:
       volumes:
         - name: keystore
           secret:
-            secretName: ig-keystore
+            secretName: openig
 
