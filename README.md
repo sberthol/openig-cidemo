@@ -6,7 +6,7 @@
 
 Inspired by https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes 
 
-** Warning: Work in progress. Some things may be broken at any given time. Use at your own risk**
+*** Warning: Work in progress. Some things may be broken at any given time. Use at your own risk***
 
 # Overview 
 
@@ -14,7 +14,8 @@ This project includes a Jenkins pipeline file  (Jenkinsfile) which contains inst
 a private repo (for example, gcr.io) and deploy it to a Kubernetes cluster. 
 
 To use this you need:
-* Jenkins CI (version 2.x - as it needs the pipeline feature and multi branch builds)
+* Jenkins CI (version 2.x - as it needs the pipeline feature and multi branch builds). If you are on a mac, you
+can install jenkins using  ```brew install jenkins```
 * The docker and kubectl commands need to be available to Jenkins as it will use these commands to build and deploy images 
 * Access to the OpenIG base image (openig). See https://stash.forgerock.org/projects/DOCKER/repos/docker/browse
 
@@ -145,6 +146,7 @@ kubectl --namespace=master delete hpa openig
 
 # Todo:
 
+* Get jenkins running in k8s - so the example can self bootstrap
 * Expand OpenIG configuration to add more examples
 * Get OIDC client id / password from secrets instead of the config
 files
