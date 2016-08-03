@@ -66,6 +66,10 @@ will have to adjust your IG configuration appropriately. You may
 wish to use an ingress even for dev branches, so you get the root context
 with no url prefix.
 
+
+See openig/README.md for more information on the sample IG configuration
+
+
 # Git branching model
 
 The branching model is:
