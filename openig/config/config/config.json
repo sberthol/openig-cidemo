@@ -5,6 +5,7 @@
     "baseURI": "https://forgerock.org:443",
     "capture": "all"
   },
+  "session": "JwtSession",
   "heap": [
     {
       "name": "LogSink",
@@ -28,7 +29,8 @@
         "keystore": "IGKeyStore",
         "alias": "jwe-key",
         "password": "changeit",
-        "cookieName": "OpenIG"
+        "cookieName": "OpenIG",
+        "sharedSecret": "OpenIG is Fun"
         }
     },
     {
@@ -38,7 +40,6 @@
         "captureEntity": true,
         "_captureContext": true
       }
-    },
-    "session": "JwtSession"
+    }
   ]
 }
