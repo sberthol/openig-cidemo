@@ -130,3 +130,11 @@ k8s/dev/. This is the way it is currently configured.
 
 
 
+# Todo:
+
+* Expand OpenIG configuration to add more examples
+* Get OIDC client id / password from secrets instead of the config
+files
+
+
+
