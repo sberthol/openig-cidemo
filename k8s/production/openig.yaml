@@ -8,12 +8,12 @@ spec:
     metadata:
       labels:
          name: openig
-         site: site1
     spec:
       containers:
       - name: openam
         image: forgerock/openig-custom:template
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
           - name: openig
             containerPort: 8080

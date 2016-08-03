@@ -46,7 +46,11 @@ If you are using minikube, another option is to do a:
 minikube service openig
 ```
 
-This should open up a browser window to the IG service. 
+This opens a browser window to the IG service. 
+
+Note: IG does not like to be behind a proxy server where
+the request context path is modified (i.e. it wants to be at the root). You
+will have to adjust your IG configuration appropriately.
 
 # Git branching model
 

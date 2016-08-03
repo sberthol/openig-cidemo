@@ -11,7 +11,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: openam
+  name: openig
 spec:
   rules:
 # Unless you want to use hostname based ingress, it is better to leave the
@@ -23,11 +23,11 @@ spec:
 #  - host: test.my2do.com
    - http:
       paths:
-      - path: /openig
+      - path: /
         backend:
           serviceName: openig
           servicePort: 80
-      - path: /openig/*
+      - path: /*
         backend:
           serviceName: openig
           servicePort: 80

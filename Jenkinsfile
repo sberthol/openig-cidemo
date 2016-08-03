@@ -5,8 +5,7 @@ node {
   def feSvcName = "${appName}"
   // running on GKE?
   def isGKE = false
-  // using minikube for dev?
-  def isMinikube = true
+
   // Generated image tag - adjust for your environment
   //def imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   // for local minikube- we just use a branch name so we dont get image explosion
@@ -17,14 +16,7 @@ node {
 
 
   stage 'Build image'
-
-/*
-  if( isMinikube ) {
-      sh("./minidocker.sh build -t ${imageTag} ${appName}")
-  }
-  else
- */
-   sh("docker build -t ${imageTag} ${appName}")
+  sh("docker build -t ${imageTag} ${appName}")
 
 
    if( isGKE) {
@@ -40,8 +32,8 @@ node {
   switch (env.BRANCH_NAME) {
     // canary deployment to production
     // this doesnt do anything different right now - but when we
-    // get multi-instance OpenAM working on Kube, it will
-    // deploy a single canary node to a N node production cluster.
+    //
+    // todo: deploy a single canary node to a N node production cluster.
     case "canary":
         // Change deployed image to the one we just built
         sh("sed -i.bak 's#${templateImage}#${imageTag}#' ./k8s/canary/*.yaml")
@@ -53,7 +45,7 @@ node {
 
     // Roll out to production
     case "production":
-        // Change deployed image in staging to the one we just built
+        // Change deployed image to the one we just built
         sh("sed -i.bak 's#${templateImage}#${imageTag}#' ./k8s/production/*.yaml")
         sh("kubectl --namespace=${env.BRANCH_NAME} apply -f k8s/production/")
         sh("kubectl --namespace=${env.BRANCH_NAME} apply -f k8s/services/")
@@ -71,7 +63,11 @@ node {
         sh("sed -i.bak 's#${templateImage}#${imageTag}#' ./k8s/dev/*.yaml")
         sh("kubectl --namespace=${env.BRANCH_NAME} apply -f k8s/services/")
         sh("kubectl --namespace=${env.BRANCH_NAME} apply -f k8s/dev/")
+        // we create the ingress anyways - even though we might not use it in dev, there is no harm
+        sh("kubectl --namespace=${env.BRANCH_NAME} apply -f k8s/ingress/")
+
         echo 'To access your environment run `kubectl proxy`'
         echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${env.BRANCH_NAME}/services/${feSvcName}:80/"
+        echo "or if you are using minikube:  minikube service openig -ns ${env.BRANCH_NAME}"
   }
 }
