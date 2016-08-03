@@ -2,7 +2,7 @@
   "heap": [
     {
       "comment": "To reuse issuers, configure them in the parent route",
-      "name": "google",
+      "name": "accounts.google.com",
       "type": "Issuer",
       "config": {
         "wellKnownEndpoint": "https://accounts.google.com/.well-known/openid-configuration"
