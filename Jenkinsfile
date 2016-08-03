@@ -72,6 +72,9 @@ node {
         echo 'To access your environment run `kubectl proxy`'
         echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${env.BRANCH_NAME}/services/${feSvcName}:80/"
         echo "or if you are using minikube:  minikube service openig -ns ${env.BRANCH_NAME}"
+        // for dev - delete the previous rs
+        // we need to get the name of the rs...
+        // sh "kubectl --namespace=${env.BRANCH_NAME}"
   }
 
 
