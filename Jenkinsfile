@@ -10,7 +10,7 @@ node {
   //def imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   // for local minikube- just use a branch name if dont want to get image explosion
   // but you will have to delete the image to get k8s to redploy if the image tag does not change
-  def imageTag = "${appName}:${env.BRANCH_NAME}..${env.BUILD_NUMBER}"
+  def imageTag = "${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   def templateImage = "forgerock/${appName}-custom:template"
 
   checkout scm
