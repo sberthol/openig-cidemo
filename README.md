@@ -1,4 +1,4 @@
-# Demonstrate how to deploy OpenAM to Kubernetes from a Jenkins CI pipeline 
+# Demonstrate how to deploy OpenIG to Kubernetes from a Jenkins CI pipeline 
 
 ##Warning
 
@@ -6,22 +6,26 @@
 
 Largely inspired by https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes 
 
+** Warning: Work in progress. Some things may be broken **
 
 # Overview 
 
-This project includes a Jenkins file which contains instructions on how to build an OpenAM image, push the image to 
-a private repo (in this case, gcr.io) and deploy it to a Kubernetes cluster. 
+This project includes a Jenkins file which contains instructions on how to build an OpenIG image, push the image to 
+a private repo (for example, gcr.io) and deploy it to a Kubernetes cluster. 
 
 To use this you need:
 * Jenkins CI (version 2.x - as it needs the pipeline feature and multi branch builds)
 * docker and kubectl need to be available to Jenkins as it will use these commands to build and deploy images 
-* Access to the OpenAM base image (openam-onbuild). See https://stash.forgerock.org/projects/DOCKER/repos/docker/browse
+* Access to the OpenIG base image (openig). See https://stash.forgerock.org/projects/DOCKER/repos/docker/browse
 
-The workflow is:
-* A branch is created to test a feature. The OpenAM configuration is created in OpenAM/config
+
+How this works
+
+
+* A branch is created to test a feature. The OpenIG configuration is held in openig/config
 * When the branch is pushed, Jenkins will pick it up and start to run the pipeline defined in ./Jenkinsfile
-* The pipeline creates a new child image which is fully configured according to the new configuration
-* The image is pushed to the repo (gcr.io)
+* The pipeline creates a new child image which is configured according to openig/config
+* The image is pushed to the repo or directly to docker 
 * A new Kubernetes namespace is created to host the image. Each branch maps to a new namespace. This keeps different branches
 isolated in the cluster. This will allow several versions to be concurrently tested.
 * kubectl commands are issued to push the new image to Kubernetes. If an old image already exists, it will be replaced by
@@ -36,6 +40,13 @@ kubectl get pods --all-namespaces
 kubectl port-forward --namespace=test openam-d86gh7 8080:8080
 ```
 
+If you are using minikube, another option is to do a:
+
+```
+minikube service openig
+```
+
+This should open up a browser window to the IG service. 
 
 # Git branching model
 
