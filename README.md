@@ -67,3 +67,34 @@ replace one of N instances in production with a canary container.
 git branch foo
 git checkout foo 
 git commit -a -m foo test 
+
+
+
+# Fun things to try:
+
+
+### Rollbacks 
+
+Show historuy:
+
+kubectl --namespace=master rollout history deployment/openig
+
+Show a revision: 
+
+kubectl --namespace=master rollout history deployment/openig --revision=20
+
+Undo a rollout (optionally specify --revision=) 
+
+kubectl --namespace=master rollout undo deployment/openig
+
+
+### Autoscale your deployment:
+
+Note: this requires heapster to be running on k8s - wont work 
+out of the box on minikube
+
+kubectl --namespace=master autoscale deployment openig --min=1 --max=4 --cpu-percent=10 
+
+Delete autoscaling: 
+
+kubectl --namespace=master delete hpa openig
