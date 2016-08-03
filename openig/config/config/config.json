@@ -30,8 +30,8 @@
         "alias": "jwe-key",
         "password": "changeit",
         "cookieName": "OpenIG",
-        "sharedSecret": "T3BlbklHaXNGdW5GdW4="
-        }
+        "sharedSecret": "T3BlbklHaXNGdW5GdW5PcGVuSUdpc0Z1bkZ1bk9wZW5JR2lzRnVuRnVuT3BlbklHaXNGdW5GdW4="
+      }
     },
     {
       "name": "capture",
