@@ -13,6 +13,12 @@ node {
   def imageTag = "${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   def templateImage = "forgerock/${appName}-custom:template"
 
+  def createKeystore() {
+     sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/ks.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
+     sh 'kubectl --namespace=${env.BRANCH_NAME} create secret generic ig-keystore --from-file=/tmp/ks.jks'
+  }
+
+
   checkout scm
 
 
@@ -73,8 +79,5 @@ node {
         echo "or if you are using minikube:  minikube service openig -ns ${env.BRANCH_NAME}"
   }
 
-  def createKeystore() {
-   sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/ks.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
-   sh 'kubectl --namespace=${env.BRANCH_NAME} create secret generic ig-keystore --from-file=/tmp/ks.jks'
-  }
+
 }
