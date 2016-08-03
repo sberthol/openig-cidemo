@@ -30,7 +30,7 @@
         "alias": "jwe-key",
         "password": "changeit",
         "cookieName": "OpenIG",
-        "sharedSecret": "OpenIG is Fun"
+        "sharedSecret": "T3BlbklHaXNGdW5GdW4="
         }
     },
     {
