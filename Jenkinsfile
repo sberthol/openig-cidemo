@@ -79,6 +79,6 @@ node {
 // Create secret - skip this if secret exists already
 def createKeystore(String branchName) {
   sh "rm -f /tmp/keystore.jks"
-  sh "keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/keystore.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
+  sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/keystore.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
   sh "kubectl --namespace=${branchName} get secret openig || kubectl --namespace=${branchName} create secret generic openig --from-file=/tmp/keystore.jks"
 }
