@@ -60,7 +60,7 @@ node {
     default:
         // Create dev branch namespace if it doesn't exist
         sh("kubectl get ns ${env.BRANCH_NAME} || kubectl create ns ${env.BRANCH_NAME}")
-        createKeystore()
+        createKeystore( env.BRANCH_NAME )
         // Don't use public load balancing for development branches
         sh("sed -i.bak 's#LoadBalancer#ClusterIP#' ./k8s/services/${appName}.yaml")
         sh("sed -i.bak 's#${templateImage}#${imageTag}#' ./k8s/dev/*.yaml")
@@ -77,8 +77,8 @@ node {
 
 }
 
-def createKeystore() {
+def createKeystore(branchName) {
      sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/ks.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
-     sh 'kubectl --namespace=${env.BRANCH_NAME} create secret generic ig-keystore --from-file=/tmp/ks.jks'
+     sh 'kubectl --namespace=${branchName} create secret generic ig-keystore --from-file=/tmp/ks.jks'
 }
 
