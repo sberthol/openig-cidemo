@@ -46,7 +46,7 @@
                 "entity": "${attributes.openid}"
               }
             },
-            "registration": "OidcRelyingParty"
+            "registrations": "OidcRelyingParty"
           }
         }
       ],

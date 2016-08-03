@@ -39,5 +39,6 @@
         "_captureContext": true
       }
     }
-  ]
+  ],
+  "session": "JwtSession"
 }
