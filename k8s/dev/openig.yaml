@@ -18,3 +18,12 @@ spec:
         ports:
           - name: openig
             containerPort: 8080
+        volumeMounts:
+          - name: keystore
+            mountPath: /var/secrets/openig
+            readOnly: true
+      volumes:
+        - name: keystore
+          secret:
+            secretName: ig-keystore
+

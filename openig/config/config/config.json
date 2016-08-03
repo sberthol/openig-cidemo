@@ -14,8 +14,22 @@
       }
     },
     {
+      "name": "IGKeyStore",
+      "type": "KeyStore",
+      "config": {
+        "url": "file://var/secret/openig/keystore.jks",
+        "password": "changeit"
+      }
+    },
+    {
       "name": "JwtSession",
-      "type": "JwtSession"
+      "type": "JwtSession",
+      "config": {
+        "keystore": "IGKeyStore",
+        "alias": "jwe-key",
+        "password": "changeit",
+        "cookieName": "OpenIG"
+        }
     },
     {
       "name": "capture",

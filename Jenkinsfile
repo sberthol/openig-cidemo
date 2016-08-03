@@ -59,6 +59,7 @@ node {
     default:
         // Create dev branch namespace if it doesn't exist
         sh("kubectl get ns ${env.BRANCH_NAME} || kubectl create ns ${env.BRANCH_NAME}")
+        createKeystore()
         // Don't use public load balancing for development branches
         sh("sed -i.bak 's#LoadBalancer#ClusterIP#' ./k8s/services/${appName}.yaml")
         sh("sed -i.bak 's#${templateImage}#${imageTag}#' ./k8s/dev/*.yaml")
@@ -70,5 +71,10 @@ node {
         echo 'To access your environment run `kubectl proxy`'
         echo "Then access your service via http://localhost:8001/api/v1/proxy/namespaces/${env.BRANCH_NAME}/services/${feSvcName}:80/"
         echo "or if you are using minikube:  minikube service openig -ns ${env.BRANCH_NAME}"
+  }
+
+  def createKeystore() {
+   sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/ks.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
+   sh 'kubectl --namespace=${env.BRANCH_NAME} create secret generic ig-keystore --from-file=/tmp/ks.jks'
   }
 }
