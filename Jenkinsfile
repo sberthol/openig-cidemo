@@ -78,7 +78,7 @@ node {
 }
 
 def createKeystore(branchName) {
-     sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/ks.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
-     sh 'kubectl --namespace=${branchName} create secret generic ig-keystore --from-file=/tmp/ks.jks'
+     sh 'keytool -genkey -alias jwe-key -keyalg rsa -keystore /tmp/keystore.jks -storepass changeit -keypass changeit -dname "CN=openig.example.com,O=Example Corp"'
+     sh 'kubectl --namespace=${branchName} create secret generic ig-keystore --from-file=/tmp/keystore.jks'
 }
 
