@@ -38,7 +38,7 @@
         "captureEntity": true,
         "_captureContext": true
       }
-    }
-  ],
-  "session": "JwtSession"
+    },
+    "session": "JwtSession"
+  ]
 }
