@@ -52,10 +52,11 @@
       ],
       "handler": {
         "type": "StaticResponseHandler",
-        "config" : {
+        "config": {
           "status": 200,
           "entity": "Welcome to OpenIG OIDC Test. Attrs ${attributes.openid.user_info.family_name}"
         }
+      }
     }
   },
   "condition": "${matches(request.uri.path, '^/openid')}",
