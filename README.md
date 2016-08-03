@@ -37,13 +37,13 @@ to the cluster.  For example:
 
 ```
 kubectl get pods --all-namespaces
-kubectl port-forward --namespace=test openam-d86gh7 8080:8080
+kubectl port-forward --namespace=test openig-d86gh7 8080:8080
 ```
 
 If you are using minikube, another option is to do a:
 
 ```
-minikube service openig
+minikube service openig -ns=git-branch-name
 ```
 
 This opens a browser window to the IG service. 

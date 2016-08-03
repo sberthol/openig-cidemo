@@ -1,0 +1,64 @@
+{
+  "heap": [
+    {
+      "comment": "To reuse issuers, configure them in the parent route",
+      "name": "google",
+      "type": "Issuer",
+      "config": {
+        "wellKnownEndpoint": "https://accounts.google.com/.well-known/openid-configuration"
+      }
+    },
+    {
+      "comment": "To reuse client registrations, configure them in the parent route",
+      "name": "OidcRelyingParty",
+      "type": "ClientRegistration",
+      "config": {
+        "clientId": "1067706085367-c03q8su1jcjn94lvtgm9ppk232juq920.apps.googleusercontent.com",
+        "clientSecret": "kgDsZr8ctb2RzP0P-SedCNHT",
+        "issuer": "accounts.google.com",
+        "redirect_uris": [
+          "https://openig.test.com/openid/callback"
+        ],
+        "scopes": [
+          "openid",
+          "profile"
+        ]
+      }
+    }
+  ],
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "OAuth2ClientFilter",
+          "config": {
+            "clientEndpoint": "/openid",
+            "requireHttps": false,
+            "requireLogin": true,
+            "target": "${attributes.openid}",
+            "failureHandler": {
+              "type": "StaticResponseHandler",
+              "config": {
+                "comment": "Trivial failure handler for debugging only",
+                "status": 500,
+                "reason": "Error",
+                "entity": "${attributes.openid}"
+              }
+            },
+            "registration": "OidcRelyingParty"
+          }
+        }
+      ],
+      "handler": {
+        "type": "StaticResponseHandler",
+        "config" : {
+          "status": 200,
+          "entity": "Welcome to OpenIG OIDC Test. Attrs ${attributes.openid.user_info.family_name}"
+        }
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/openid')}",
+  "baseURI": "https://openig.test.com"
+}
+

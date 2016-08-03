@@ -10,7 +10,7 @@ spec:
          name: openig
     spec:
       containers:
-      - name: openam
+      - name: openig
         image: forgerock/openig-custom:template
         # imagePullPolicy: Always
         imagePullPolicy: IfNotPresent
