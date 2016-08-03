@@ -17,7 +17,7 @@
       "name": "IGKeyStore",
       "type": "KeyStore",
       "config": {
-        "url": "file://var/secret/openig/keystore.jks",
+        "url": "file:///var/secrets/openig/keystore.jks",
         "password": "changeit"
       }
     },
