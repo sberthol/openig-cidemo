@@ -9,7 +9,7 @@
       }
     },
     {
-      "comment": "To reuse client registrations, configure them in the parent route",
+      "comment": "To reuse client registrations, configure them in the parent route. Note clientSecret has been rotated",
       "name": "OidcRelyingParty",
       "type": "ClientRegistration",
       "config": {
