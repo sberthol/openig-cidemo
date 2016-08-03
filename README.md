@@ -93,17 +93,21 @@ git commit -a -m foo test
 
 # Useful tidbits
 
-If you are doing development on minikube, rather than push 
+* If you are doing development on minikube, rather than push 
 to a registry, and then have k8s download the image again, it
 is easier to docker build directly to the docker instance
 used by k8s in minikube.  Set the imagePullPolicy appropriately in
 k8s/dev/. This is the way it is currently configured. 
-
-The k8s dashboard is helpful to view logs, etc. On minikube open 
+* The k8s dashboard is helpful to view logs, etc. On minikube open 
 with:
 ```
 minikube dashboard
 ```
+* You can create an ingress controller on minikube using:=
+```
+./create-ingress.sh
+```
+
 
 
 
