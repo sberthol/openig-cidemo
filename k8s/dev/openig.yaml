@@ -10,6 +10,8 @@ spec:
       labels:
          name: openig
     spec:
+      # For dev, we only need a couple of revs
+      revisionHistoryLimit: 2
       containers:
       - name: openig
         image: forgerock/openig-custom:template
