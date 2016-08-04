@@ -103,7 +103,7 @@ with:
 ```
 minikube dashboard
 ```
-* You can create an ingress controller on minikube using:=
+* You can create an ingress controller on minikube using:
 ```
 ./create-ingress.sh
 ```
