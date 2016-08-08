@@ -14,7 +14,7 @@
       "type": "ClientRegistration",
       "config": {
         "clientId": "1067706085367-c03q8su1jcjn94lvtgm9ppk232juq920.apps.googleusercontent.com",
-        "clientSecret": "kgDsZr8ctb2RzP0P-SedCNHT",
+        "clientSecret": "MehyE8gmPt8n0c0xpgbCOknT",
         "issuer": "accounts.google.com",
         "redirect_uris": [
           "http://openig.test.com/openid/callback"
