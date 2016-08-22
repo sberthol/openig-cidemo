@@ -155,5 +155,6 @@ kubectl --namespace=master delete hpa openig
 * Get OIDC client id / password from secrets instead of the config
 files
 
+test
 
 

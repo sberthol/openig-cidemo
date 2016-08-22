@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Convenice shell script that points docker to minikube's docker
+# Convenience shell script that points docker to minikube's docker
+# Source this
 
 eval $(minikube docker-env)
 
@@ -10,5 +11,3 @@ echo `which docker`
 
 source "$(brew --prefix dvm)/dvm.sh"
 
-
-docker $*
