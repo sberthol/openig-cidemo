@@ -55,7 +55,7 @@
         "type": "StaticResponseHandler",
         "config": {
           "status": 200,
-          "entity": "<html><h1>OpenIG OIDC Test Page</h1><p> Userinfo:</p><p>${attributes.openid.user_info} </p> <h2>hostname: ${env['HOSTNAME']} </h2></html>"
+          "entity": "<html><h1>Welcome OpenIG OIDC Test Page</h1><p> Userinfo:</p><p>${attributes.openid.user_info} </p> <h2>hostname: ${env['HOSTNAME']} </h2></html>"
         }
       }
     }
