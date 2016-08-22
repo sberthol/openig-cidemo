@@ -118,7 +118,10 @@ minikube dashboard
 In the k8s dashboard, edit the openig deployment object, and
 change the number of replicas. You will see new pods created.
 
+### Answer the question: What changed between the current and previous release?
 
+git diff HEAD^ HEAD
+ 
 ### Rollbacks 
 
 Show history:
