@@ -16,7 +16,7 @@ spec:
       - name: openig
         image: forgerock/openig-custom:template
         # Assume image is in our docker cache. Part of the CI build process
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
           - name: openig
             containerPort: 8080
@@ -24,6 +24,17 @@ spec:
           - name: keystore
             mountPath: /var/secrets/openig
             readOnly: true
+        env:
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key:  client-id
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: oidc
+                key: client-secret
       volumes:
         - name: keystore
           secret:

@@ -5,6 +5,7 @@
     "baseURI": "https://forgerock.org:443",
     "capture": "all"
   },
+  "bindings": { "$location": "file:/var/openig/config/bindings.json"},
   "session": "JwtSession",
   "heap": [
     {

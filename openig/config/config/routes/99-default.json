@@ -3,7 +3,7 @@
     "type": "StaticResponseHandler",
     "config" : {
       "status": 200,
-      "entity": "Welcome to OpenIG. hostname: ${env['HOSTNAME']}"
+      "entity": "${welcomeMsg} hostname: ${env['HOSTNAME']}"
     }
   }
 }

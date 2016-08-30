@@ -150,13 +150,32 @@ kubectl --namespace=master delete hpa openig
 
 
 
+### Tips
+
+To clean up all the openig images in docker, try:
+
+docker rmi $(docker images  openig -q)
+
+(Note: this is dangerous, but if you want to force image
+deletion use rmi -f )
+
 
 # Todo:
 
+OpenIG:
+
+* Expand example to include sample app described in docs 
+* Parameterize OpenIG config  
+
+k8s todo:
+
 * Get jenkins running in k8s - so the example can self bootstrap
-* Expand OpenIG configuration to add more examples
 * Get OIDC client id / password from secrets instead of the config
-files
+* What is the local dev story? i.e. redeploy files in the 
+current directory without needing to commit to git 
+
+
+
 
 
 

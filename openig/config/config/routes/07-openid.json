@@ -9,15 +9,15 @@
       }
     },
     {
-      "comment": "To reuse client registrations, configure them in the parent route. Note clientSecret has been rotated",
+      "comment": "To reuse client registrations, configure them in the parent route. Note clientSecret below has been rotated",
       "name": "OidcRelyingParty",
       "type": "ClientRegistration",
       "config": {
-        "clientId": "1067706085367-c03q8su1jcjn94lvtgm9ppk232juq920.apps.googleusercontent.com",
-        "clientSecret": "MehyE8gmPt8n0c0xpgbCOknT",
+        "clientId": "${env['CLIENT_ID']}",
+        "clientSecret": "${env['CLIENT_SECRET']}",
         "issuer": "accounts.google.com",
         "redirect_uris": [
-          "http://openig.test.com/openid/callback"
+          "${callbackUrl}"
         ],
         "scopes": [
           "openid",

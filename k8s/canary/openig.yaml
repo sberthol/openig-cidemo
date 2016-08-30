@@ -14,7 +14,7 @@ spec:
       - name: openig
         image: forgerock/openig-custom:template
         # Assume image is in our docker cache. Part of the CI build process
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
           - name: openig
             containerPort: 8080

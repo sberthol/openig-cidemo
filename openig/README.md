@@ -1,15 +1,19 @@
 # Sample config to test OpenIG
 
-This gets mounted on /var/openig/config 
+The config/ direction gets copied to /var/openig/config in the docker
+container.
 
 
 Routes
 
-/* default - default OpenIG page 
+/  default - default OpenIG welcome page 
 
 /openid - tests OIDC with Google.
-You need to edit config/routes/07-openid.json with your
-Google application clientId / clientSecret. The credentials
+
+You will need to edit config/routes/07-openid.json with your
+Google application clientId / clientSecret. 
+
+Note: The credentials
 checked in to git are *not* active and will not work. 
 
 To test this, go to 
