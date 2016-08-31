@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Test script for creating a secret
 
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /tmp/tls.key -out /tmp/tls.crt -subj "/CN=openig.master.test.com"
 
