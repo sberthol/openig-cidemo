@@ -19,6 +19,8 @@ node {
 
   stage ('Checkout Source') {
    checkout scm
+
+   sh "./deploy.sh"
    }
 
 
