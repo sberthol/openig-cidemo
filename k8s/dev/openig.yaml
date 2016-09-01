@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: openig
-        image: forgerock/openig-custom:template
+        # This template gets replaced with the real image name by the deploy script
+        image: IMAGE_TEMPLATE
         # Assume image is in our docker cache. Part of the CI build process
         imagePullPolicy: IfNotPresent
         ports:
@@ -28,12 +29,12 @@ spec:
           - name: CLIENT_ID
             valueFrom:
               secretKeyRef:
-                name: oidc
+                name: ig-secrets
                 key:  client-id
           - name: CLIENT_SECRET
             valueFrom:
               secretKeyRef:
-                name: oidc
+                name: ig-secrets
                 key: client-secret
       volumes:
         - name: keystore

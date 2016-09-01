@@ -40,6 +40,8 @@ node {
                "--from-literal=client-secret=${env.CLIENT_SECRET}"
 
           echo "Client id ${env.CLIENT_ID}"
+
+          sh ""
       }
 
     }

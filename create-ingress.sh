@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Creates an optional ingress controller to load balance your services
-# If you are running on  a turnkey cloud (AWS, GCE) you wont need this.
+# If you are running on  a turnkey cloud (AWS, GCE) you don't need this.
 # Use this for minikube, or other environments
 # See https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
 
