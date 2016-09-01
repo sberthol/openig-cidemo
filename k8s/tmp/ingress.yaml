@@ -9,12 +9,13 @@ kind: Ingress
 metadata:
   name: openig
 spec:
-
   tls:
     - secretName: ssl-secret
   backend:
           serviceName: openig
           servicePort: 80
+  rules:
+
 #  rules:
 # Unless you want to use hostname based ingress, it is better to leave the
 # Hostname out so it works for all paths

@@ -1,0 +1,10 @@
+{
+  "handler": {
+    "type": "StaticResponseHandler",
+    "config" : {
+      "status": 200,
+      "entity": "${read(env['OPENIG_BASE'].concat('/html/hello.html'))}"
+    }
+  },
+  "condition": "${matches(request.uri.path, '^/hello')}"
+}

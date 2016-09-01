@@ -3,7 +3,7 @@
     "type": "StaticResponseHandler",
     "config" : {
       "status": 200,
-      "entity": "${welcomeMsg} hostname: ${env['HOSTNAME']}"
+      "entity": "Msg: ${welcomeMsg} Hostname: ${env['HOSTNAME']} Namespace: ${env['NAMESPACE']} Image: ${env['IMAGE']}"
     }
   }
 }

@@ -10,7 +10,7 @@ metadata:
   name: openig
 spec:
   rules:
-  - host: openig.NAMESPACE.test.com
+  - host: openig.NAMESPACE_TEMPLATE.test.com
     http:
       paths:
       - path: /

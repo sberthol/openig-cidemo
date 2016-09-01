@@ -3,17 +3,39 @@ kind: Deployment
 metadata:
   name: openig
 spec:
-  replicas: 2
+  replicas: 3
+  revisionHistoryLimit: 3
   template:
     metadata:
+      name: openig
       labels:
          name: openig
     spec:
       containers:
       - name: openig
-        image: forgerock/openig-custom:template
-        # imagePullPolicy: Always
+        # This template gets replaced with the real image name by the deploy script
+        image: IMAGE_TEMPLATE
+        # Assume image is in our docker cache. Part of the CI build process
         imagePullPolicy: IfNotPresent
         ports:
           - name: openig
             containerPort: 8080
+        volumeMounts:
+          - name: keystore
+            mountPath: /var/secrets/openig
+            readOnly: true
+        env:
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: ig-secrets
+                key:  client-id
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: ig-secrets
+                key: client-secret
+      volumes:
+        - name: keystore
+          secret:
+            secretName: openig

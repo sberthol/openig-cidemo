@@ -6,7 +6,7 @@
 # without needing to commit each change to git
 
 # source any private env vars
-# Things like secrets can get set in this file
+# Things like secrets can get set in this file. This file is not checked in to git
 source env.sh
 
 
@@ -14,6 +14,13 @@ source env.sh
 
 BRANCH_NAME=${BRANCH_NAME:-default}
 BUILD_NUMBER=${BUILD_NUMBER:-1}
+
+
+# If command line args are supplied - they are the branch name and build number $1 $2
+if [ "$#" -eq 2 ]; then
+   BRANCH_NAME=$1
+   BUILD_NUMBER=$2
+fi
 
 # Default k8s namespace is the git branch
 NAMESPACE=${BRANCH_NAME}
@@ -31,6 +38,8 @@ mkdir -p $TMPDIR
 # otherwise, use this
 GC=""
 
+
+echo "Building Docker image $IMAGE"
 
 $GC docker build -t $IMAGE openig
 
@@ -61,12 +70,12 @@ function create_secrets {
       --from-literal=client-secret=${CLIENT_SECRET}
 }
 
-# run all the template expansions on our yaml
+# run all the template expansions on our yaml and then deploy
 function do_template {
    for file in "$@"
    do
       echo "templating $file"
-      sed -e "s#IMAGE_TEMPLATE#${IMAGE}#" -e "s#NAMESPACE#${NAMESPACE}#" $file  > $TMPDIR/out.yaml
+      sed -e "s#IMAGE_TEMPLATE#${IMAGE}#" -e "s#NAMESPACE_TEMPLATE#${NAMESPACE}#" $file  > $TMPDIR/out.yaml
       $kc apply -f $TMPDIR/out.yaml
    done
 }
@@ -81,6 +90,8 @@ $kc get secret  ig-secrets || create_secrets
 echo "Creating/updating services"
 $kc apply -f k8s/services
 
+
+# todo: handle prod and canary deployments
 echo "Creating/updating deployments"
 do_template k8s/dev/*.yaml
 
