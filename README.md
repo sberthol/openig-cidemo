@@ -152,9 +152,9 @@ kubectl --namespace=master delete hpa openig
 
 ### Tips
 
-To clean up all the openig images in docker, try:
+To clean up all the openig-custom images in docker, try:
 
-docker rmi $(docker images  openig -q)
+docker rmi $(docker images  openig-custom -q)
 
 (Note: this is dangerous, but if you want to force image
 deletion use rmi -f )

@@ -9,13 +9,6 @@
   "session": "JwtSession",
   "heap": [
     {
-      "name": "LogSink",
-      "type": "ConsoleLogSink",
-      "config": {
-        "level": "DEBUG"
-      }
-    },
-    {
       "name": "IGKeyStore",
       "type": "KeyStore",
       "config": {

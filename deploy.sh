@@ -13,7 +13,10 @@ source env.sh
 # Environment variables that are expected to get set by Jenkins - but will default if not set
 
 BRANCH_NAME=${BRANCH_NAME:-default}
-BUILD_NUMBER=${BUILD_NUMBER:-1}
+# We default build number to the timestamp in seconds
+# If you use the same build number each time, k8s will think the image is the same and will not roll out a new one
+# When a deployment is used.
+BUILD_NUMBER=${BUILD_NUMBER:-`date +%s`}
 
 
 # If command line args are supplied - they are the branch name and build number $1 $2
@@ -25,9 +28,9 @@ fi
 # Default k8s namespace is the git branch
 NAMESPACE=${BRANCH_NAME}
 
-# Env vars use to paramerize deployment
+# Env vars use to parameterize deployment
 APP_NAME=openig
-IMAGE="forgeock/${APP_NAME}-custom:${BRANCH_NAME}.${BUILD_NUMBER}"
+IMAGE="${APP_NAME}-custom:${BRANCH_NAME}.${BUILD_NUMBER}"
 
 TMPDIR="/tmp/openig"
 

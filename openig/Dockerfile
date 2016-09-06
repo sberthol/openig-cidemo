@@ -1,4 +1,4 @@
 FROM forgerock/openig:latest
 
-ADD config /var/openig
+ADD custom-config /var/openig
 
