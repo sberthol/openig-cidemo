@@ -11,7 +11,7 @@ node {
    }
 
    stage ('Run deploy') {
-      sh("./deploy.sh ${BRANCH_NAME} ${BUILD_NUMBER}"
+      sh("./deploy.sh ${BRANCH_NAME} ${BUILD_NUMBER}")
    }
 
 }
