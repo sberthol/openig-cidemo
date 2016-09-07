@@ -11,7 +11,7 @@ node {
    }
 
    stage ('Run deploy') {
-      sh("./deploy.sh ${BRANCH_NAME}")
+      sh("./deploy.sh ${env.BRANCH_NAME}")
    }
 
 }
