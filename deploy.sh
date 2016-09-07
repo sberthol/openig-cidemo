@@ -19,10 +19,9 @@ BRANCH_NAME=${BRANCH_NAME:-default}
 BUILD_NUMBER=${BUILD_NUMBER:-`date +%s`}
 
 
-# If command line args are supplied - they are the branch name and build number $1 $2
-if [ "$#" -eq 2 ]; then
+# If command line args are supplied - they are the branch name
+if [ "$#" -eq 1 ]; then
    BRANCH_NAME=$1
-   BUILD_NUMBER=$2
 fi
 
 # Default k8s namespace is the git branch
