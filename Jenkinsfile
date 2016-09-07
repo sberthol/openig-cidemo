@@ -11,6 +11,7 @@ node {
    }
 
    // we hold any secrets we need in Jenkins to recreate the env.sh file
+   // create a username / password secret in Jenkins called oidc-secret
    stage('create secrets') {
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'oidc-secret',
             passwordVariable: 'CLIENT_SECRET', usernameVariable: 'CLIENT_ID']]) {
